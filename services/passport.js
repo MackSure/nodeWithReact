@@ -18,7 +18,8 @@ passport.deserializeUser((id, done) => {
 passport.use(new GitLabStrategy({
     clientID: keys.gitlabClientID,
     clientSecret: keys.gitlabClientSecret,
-    callbackURL: '/auth/gitlab/callback'
+    callbackURL: '/auth/gitlab/callback',
+    proxy: true
 }, (accessToken, refreshToken, profile, done) => {
     User.findOne({gitlabId: profile.id}).then((existingUser) => {
        if (!existingUser) {
