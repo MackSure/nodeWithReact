@@ -20,17 +20,14 @@ passport.use(new GitLabStrategy({
     clientSecret: keys.gitlabClientSecret,
     callbackURL: '/auth/gitlab/callback',
     proxy: true
-}, (accessToken, refreshToken, profile, done) => {
-    User.findOne({gitlabId: profile.id}).then((existingUser) => {
-       if (!existingUser) {
-           // we don't have a user record with this ID, make a new record;
-           new User({gitlabId: profile.id}).save().then(user => {
-               done(null, user);
-           });
-       } else {
-           // we already have a record with the given profile ID;
-           done(null, existingUser);
-       }
-    });
-
+}, async (accessToken, refreshToken, profile, done) => {
+    const existingUser = await User.findOne({gitlabId: profile.id})
+    if (!existingUser) {
+        // we don't have a user record with this ID, make a new record;
+        const user = await new User({gitlabId: profile.id}).save();
+        return done(null, user);
+    }
+    ;
+    // we already have a record with the given profile ID;
+    done(null, existingUser);
 }));
