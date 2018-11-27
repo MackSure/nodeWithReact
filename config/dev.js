@@ -5,6 +5,6 @@ module.exports = {
     cookieKey: 'sljdkljfdssldlkjfdkldjlfsjghdkllsdjdsljdlsjdkdfhfdkdlskjs',
     stripePublishableKey: 'pk_test_DZHaqi2pm0KtIrv0ZtXQnNUf',
     stripeSecretKey: 'sk_test_Sw5PDK8HpPjBisgzNaYaKVud',
-    sendGridKey: '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',
+    sendGridKey: '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',
     redirectDomain: 'http://localhost:3000'
 };

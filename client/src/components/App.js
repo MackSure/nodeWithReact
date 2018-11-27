@@ -3,29 +3,27 @@ import {Route, BrowserRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import * as actions from '../actions'
 import Header from './Header';
-import Surveys from './Surveys';
+// import Surveys from './Surveys';
 import Landing from './Landing';
+import Dashboard from './Dashboard';
+import SurveryNew from './surveys/SurveyNew';
 
 class App extends Component {
 
     componentDidMount() {
         this.props.fetchUser();
-
     }
 
     render() {
         return (
-            <div className="container">
                 <BrowserRouter>
-                    <div>
-                        <Header/>
-                        <Route exact to={"/"} component={Landing}/>
-                        <Route exact to={"/surveys"} component={Surveys}/>
-
+                    <div className="container">
+                        <Header />
+                        <Route exact path="/" component={Landing} />
+                        <Route exact path="/surveys" component={Dashboard} />
+                        <Route path="/surveys/new" component={SurveryNew} />
                     </div>
                 </BrowserRouter>
-            </div>
-
         );
     }
 }
